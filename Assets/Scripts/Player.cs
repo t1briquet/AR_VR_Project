@@ -8,21 +8,24 @@ public class Player : MonoBehaviour
     [NonSerialized] public GameObject player = default;
 
     [NonSerialized] public Transform playerTransform = default;
-
-    private int _health;
-    public bool invisible = false;
+    [NonSerialized] public bool invisible = false;
+    public int Health { get; private set; }
+    public string lastTouched { get; private set; }
+    public Vector3 lastCheckpoint;
 
     private void Awake()
     {
         player = gameObject;
         playerTransform = transform;
-        _health = 100;
+        Health = 100;
+        lastTouched = "";
+        lastCheckpoint = playerTransform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_health <= 0)
+        if (Health <= 0)
         {
             Debug.Log("T'es mort");
         }
@@ -30,11 +33,21 @@ public class Player : MonoBehaviour
 
     public void HealPlayer(int value)
     {
-        _health += value;
+        Health += value;
     }
 
     public void TakeDamage(int damage)
     {
-        _health -= damage;
+        Health -= damage;
+    }
+
+    public void OneShot()
+    {
+        Health = 0;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        lastTouched = hit.gameObject.name;
     }
 }
