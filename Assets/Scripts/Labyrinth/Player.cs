@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private DeadScreen deadScreen = default;
+
     [NonSerialized] public GameObject player = default;
 
     [NonSerialized] public Transform playerTransform = default;
@@ -13,9 +16,12 @@ public class Player : MonoBehaviour
     public string lastTouched { get; private set; }
     public Vector3 lastCheckpoint;
 
+    private CharacterController _playerController;
+
     private void Awake()
     {
         player = gameObject;
+        _playerController = GetComponent<CharacterController>();
         playerTransform = transform;
         Health = 100;
         lastTouched = "";
@@ -25,10 +31,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Health <= 0)
-        {
-            Debug.Log("T'es mort");
-        }
+        if (Health > 0) return;
+        deadScreen.displayDeadScreen();
+        Respawn();
     }
 
     public void HealPlayer(int value)
@@ -44,6 +49,14 @@ public class Player : MonoBehaviour
     public void OneShot()
     {
         Health = 0;
+    }
+
+    private void Respawn()
+    {
+        _playerController.enabled = false;
+        playerTransform.position = lastCheckpoint;
+        Health = 100;
+        _playerController.enabled = true;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

@@ -18,6 +18,6 @@ public class ChekPoints : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && player.Health > 0)
-            player.lastCheckpoint = _cpTransform.position;
+            player.lastCheckpoint = _cpTransform.position + Vector3.up * 2;
     }
 }
