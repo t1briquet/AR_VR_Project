@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MuseumScene.unity
     guid: c17e28180b6dde54f86e338a6fc6843e
+  - enabled: 1
+    path: Assets/Scenes/WinningScene.unity
+    guid: 73d2945eec58b37458e9f5555e7d5aff
   m_configObjects: {}

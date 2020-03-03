@@ -73,7 +73,7 @@ namespace Home
         private Vector3 GetRandomKeyPoition()
         {
             float x = Random.Range(_controllerPosition.x - 95f, _controllerPosition.x + 95f);
-            float z = Random.Range(_controllerPosition.x - 45f, _controllerPosition.y + 45f);
+            float z = Random.Range(_controllerPosition.y - 0f, _controllerPosition.y + 90f);
             return new Vector3(x, _controllerPosition.y, z);
         }
 
