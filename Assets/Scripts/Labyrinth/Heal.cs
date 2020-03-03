@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Heal : MonoBehaviour
+namespace Labyrinth
 {
-    [SerializeField] private Player player = default;
-    [SerializeField] private int healValue = 2;
-
-
-    private void OnTriggerEnter(Collider other)
+    public class Heal : MonoBehaviour
     {
-        if (other.CompareTag("Player"))
-            player.HealPlayer(healValue);
+        [SerializeField] private Player player;
+        [SerializeField] private int healValue = 2;
+
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+                player.HealPlayer(healValue);
+        }
     }
 }

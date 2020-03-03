@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Labyrinth.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private DeadScreen deadScreen = default;
+    [SerializeField] private DeadScreen deadScreen;
 
-    [NonSerialized] public GameObject player = default;
-
-    [NonSerialized] public Transform playerTransform = default;
+    [NonSerialized] public Transform playerTransform;
     [NonSerialized] public bool invisible = false;
     public int Health { get; private set; }
     public string lastTouched { get; private set; }
@@ -20,7 +19,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        player = gameObject;
         _playerController = GetComponent<CharacterController>();
         playerTransform = transform;
         Health = 100;
@@ -32,7 +30,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (Health > 0) return;
-        deadScreen.displayDeadScreen();
+        deadScreen.DisplayDeadScreen();
         Respawn();
     }
 

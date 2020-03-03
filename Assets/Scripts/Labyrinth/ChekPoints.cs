@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
-public class ChekPoints : MonoBehaviour
+namespace Labyrinth
 {
-    [SerializeField] private Player player;
-
-    private Transform _cpTransform;
-
-    private void Awake()
+    public class ChekPoints : MonoBehaviour
     {
-        _cpTransform = transform;
-    }
+        [SerializeField] private Player player;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && player.Health > 0)
-            player.lastCheckpoint = _cpTransform.position + Vector3.up * 2;
+        private Transform _cpTransform;
+
+        private void Awake()
+        {
+            _cpTransform = transform;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player") && player.Health > 0)
+                player.lastCheckpoint = _cpTransform.position + Vector3.up * 2;
+        }
     }
 }

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MovingWalls : MonoBehaviour
+namespace Labyrinth
 {
-    [SerializeField] private Player player;
-
-    private void OnTriggerEnter(Collider other)
+    public class MovingWalls : MonoBehaviour
     {
-        if (other.CompareTag("Player"))
-            player.OneShot();
+        [SerializeField] private Player player;
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+                player.OneShot();
+        }
     }
 }

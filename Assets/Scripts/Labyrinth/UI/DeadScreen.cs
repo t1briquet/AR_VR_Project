@@ -1,27 +1,27 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class DeadScreen : MonoBehaviour
+namespace Labyrinth.UI
 {
-    [SerializeField] private GameObject deadImage = default;
-
-    private void Awake()
+    public class DeadScreen : MonoBehaviour
     {
-        deadImage.SetActive(false);
-    }
+        [SerializeField] private GameObject deadImage;
 
-    public void displayDeadScreen()
-    {
-        deadImage.SetActive(true);
-        StartCoroutine(HideDeadImage());
-    }
+        private void Awake()
+        {
+            deadImage.SetActive(false);
+        }
 
-    private IEnumerator HideDeadImage()
-    {
-        yield return new WaitForSeconds(2f);
-        deadImage.SetActive(false);
+        public void DisplayDeadScreen()
+        {
+            deadImage.SetActive(true);
+            StartCoroutine(HideDeadImage());
+        }
+
+        private IEnumerator HideDeadImage()
+        {
+            yield return new WaitForSeconds(2f);
+            deadImage.SetActive(false);
+        }
     }
 }

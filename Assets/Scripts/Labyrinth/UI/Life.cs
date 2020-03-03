@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Life : MonoBehaviour
+namespace Labyrinth.UI
 {
-    [SerializeField] private Player player = default;
-
-    [SerializeField] private TMPro.TextMeshProUGUI lifeText = default;
-
-    private void Update()
+    public class Life : MonoBehaviour
     {
-        lifeText.text = player.Health.ToString();
+        [SerializeField] private Player player;
+
+        [SerializeField] private TMPro.TextMeshProUGUI lifeText;
+
+        private void Update()
+        {
+            lifeText.text = player.Health.ToString();
+        }
     }
 }
