@@ -8,7 +8,7 @@ namespace Home
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(3);
         }
     }
 }
