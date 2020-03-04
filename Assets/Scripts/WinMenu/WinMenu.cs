@@ -1,23 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class WinMenu : MonoBehaviour
+namespace WinMenu
 {
-    // Start is called before the first frame update
-    void Start()
+    public class WinMenu : MonoBehaviour
     {
-        gameObject.SetActive(false);
-    }
+        private void Awake()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        ToggleWinMenu();
-        
-    }
-    public void ToggleWinMenu()
-    {
-         gameObject.SetActive(true);   
+        public void GoBackToMainMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
